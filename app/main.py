@@ -29,7 +29,7 @@ async def read_root(request: Request):
         with conn.cursor(cursor_factory=RealDictCursor) as cursor:
             cursor.execute("SELECT id, amount FROM orders")
             orders = cursor.fetchall()
-    
+
     return templates.TemplateResponse(
         "index.html",
         {"request": request, "orders": orders}
@@ -45,7 +45,7 @@ async def health_check():
         "version": settings.APP_VERSION,
         "database": "unknown"
     }
-    
+
     try:
         with get_db() as conn:
             with conn.cursor() as cursor:
@@ -56,7 +56,7 @@ async def health_check():
         health_status["status"] = "unhealthy"
         health_status["database"] = "disconnected"
         health_status["error"] = str(e)
-    
+
     return health_status
 
 
@@ -70,7 +70,7 @@ async def create_order(order: OrderCreate):
                 (order.amount,)
             )
             result = cursor.fetchone()
-    
+
     return Order(**result)
 
 
@@ -81,7 +81,7 @@ async def get_orders():
         with conn.cursor(cursor_factory=RealDictCursor) as cursor:
             cursor.execute("SELECT id, amount FROM orders")
             orders = cursor.fetchall()
-    
+
     return [Order(**order) for order in orders]
 
 
@@ -95,8 +95,8 @@ async def get_order(order_id: int):
                 (order_id,)
             )
             result = cursor.fetchone()
-    
+
     if result is None:
         raise HTTPException(status_code=404, detail="Order not found")
-    
+
     return Order(**result)

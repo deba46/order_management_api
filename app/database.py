@@ -1,6 +1,5 @@
 """Database connection management."""
 import psycopg2
-from psycopg2.extras import RealDictCursor
 from contextlib import contextmanager
 from app.config import settings
 

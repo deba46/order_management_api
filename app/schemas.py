@@ -1,6 +1,5 @@
 """Pydantic models for orders."""
 from pydantic import BaseModel, Field
-from typing import Optional
 
 
 class OrderCreate(BaseModel):
