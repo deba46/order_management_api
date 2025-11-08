@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/deba46/order-management-api
-  pullPolicy: Always  # Use 'IfNotPresent' for registry images
+  pullPolicy: IfNotPresent  # Use 'IfNotPresent' for local/loaded images
   tag: "6f38e3f"
 
 imagePullSecrets:
@@ -19,6 +19,22 @@ service:
   type: ClusterIP
   port: 80
   targetPort: 8000
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  hosts:
+    - host: order-api.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: order-api-tls
+      hosts:
+        - order-api.local
 
 resources:
   limits:

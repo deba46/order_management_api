@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: orders-api
-  labels:
-    name: orders-api
