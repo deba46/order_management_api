@@ -71,7 +71,7 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: orders-server-postgresql
+                  name: order-api
                   key: password
             - name: POSTGRES_DATABASE
               value: "server"

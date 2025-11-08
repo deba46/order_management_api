@@ -12,3 +12,4 @@ echo "   Password: PrefectPassword123"
 echo ""
 echo "Database URL:"
 echo "   postgresql://orders:PrefectPassword123@orders-server-postgresql.orders-api.svc.cluster.local:5432/server"
+

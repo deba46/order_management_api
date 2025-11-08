@@ -52,7 +52,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: {{ include "order-api.fullname" . }}
-              key: POSTGRES_PASSWORD
+              key: password
         livenessProbe:
           {{- toYaml .Values.livenessProbe | nindent 10 }}
         readinessProbe:
