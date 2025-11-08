@@ -57,8 +57,8 @@ postgresql:
   port: "5432"
   database: "server"
   username: "orders"
-  # Password should be provided via secret
-  password: "PrefectPassword123"
+  # added a secret for passwrd
+  password: ""
 
 # Application settings
 app:
