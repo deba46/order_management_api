@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: order-api
+  namespace: argocd
+spec:
+  project: default
+  
+  source:
+    repoURL: https://github.com/deba46/order_management_api.git  # TODO: Update with your GitHub repo URL
+    targetRevision: main
+    path: k8s_manifests/helm/order-api
+    helm:
+      valueFiles:
+        - values.yaml
+  
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: orders-api
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
+  
+  revisionHistoryLimit: 3

@@ -1,0 +1,14 @@
+kubectl apply -f k8s_manifests/namespace.yaml
+kubectl apply -f k8s_manifests/database/postgresql-secret.yaml
+kubectl apply -f k8s_manifests/database/postgresql-service.yaml
+kubectl apply -f k8s_manifests/database/postgresql-statefulset.yaml
+
+Connection Details:"
+echo "   Host: orders-server-postgresql.orders-api.svc.cluster.local"
+echo "   Port: 5432"
+echo "   Database: server"
+echo "   Username: orders"
+echo "   Password: PrefectPassword123"
+echo ""
+echo "Database URL:"
+echo "   postgresql://orders:PrefectPassword123@orders-server-postgresql.orders-api.svc.cluster.local:5432/server"

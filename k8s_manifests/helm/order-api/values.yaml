@@ -1,0 +1,66 @@
+# Default values for order-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  repository: ghcr.io/deba46/order-management-api
+  pullPolicy: Always  # Use 'IfNotPresent' for registry images
+  tag: "latest"
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# Health check probes
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8000
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8000
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+# Security context
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+
+# PostgreSQL configuration
+postgresql:
+  host: "orders-server-postgresql.orders-api.svc.cluster.local"
+  port: "5432"
+  database: "server"
+  username: "orders"
+  # Password should be provided via secret
+  password: "PrefectPassword123"
+
+# Application settings
+app:
+  name: "Order Management API"
+  version: "1.0.0"
