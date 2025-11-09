@@ -1,0 +1,7 @@
+kubectl create ns monitoring
+kubectl apply -f k8s_manifests/grafana/grafana-datasource.yaml
+
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+
+helm upgrade --install loki grafana/loki-stack -n monitoring -f k8s_manifests/grafana/values.yaml

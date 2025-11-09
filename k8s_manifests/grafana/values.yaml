@@ -1,0 +1,21 @@
+loki:
+  enabled: true
+  persistence:
+    enabled: false
+
+promtail:
+  enabled: true
+  config:
+    clients:
+      - url: http://loki:3100/loki/api/v1/push
+
+grafana:
+  enabled: true
+  adminUser: admin
+  adminPassword: admin
+  service:
+    type: ClusterIP
+  sidecar:
+    datasources:
+      enabled: true
+      label: grafana-datasource  # optional label to watch ConfigMaps
