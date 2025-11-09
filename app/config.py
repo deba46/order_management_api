@@ -8,10 +8,8 @@ class Settings:
     APP_VERSION: str = "1.0.0"
 
     # PostgreSQL
-    POSTGRES_USER: str = os.getenv("POSTGRES_USER", "orders")
-    POSTGRES_PASSWORD: str = os.getenv(
-        "POSTGRES_PASSWORD", "PrefectPassword123"
-    )
+    POSTGRES_USER: str = os.getenv("POSTGRES_USER")
+    POSTGRES_PASSWORD: str = os.getenv("POSTGRES_PASSWORD")
     POSTGRES_HOST: str = os.getenv(
         "POSTGRES_HOST",
         "orders-server-postgresql.orders-api.svc.cluster.local"
