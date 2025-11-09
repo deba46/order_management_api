@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/deba46/order-management-api
   pullPolicy: Always  # Use 'IfNotPresent' for local/loaded images
-  tag: "6f38e3f"
+  tag: "65b0bed"
 
 imagePullSecrets:
   - name: ghcr-secret
