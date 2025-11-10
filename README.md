@@ -235,6 +235,8 @@ sudo nano /etc/hosts
 ### Step 8: Install the Application with Helm
 
 ```bash
+# create ACR or github registry secret 
+kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deba46 --docker-password=<pat_token> -n orders-api
 # Install the application using Helm
 helm install order-api k8s_manifests/helm/order-api \
   --namespace orders-api 
